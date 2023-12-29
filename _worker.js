@@ -1,39 +1,39 @@
-// <!--GAMFC-->version base on commit 43fad05dcdae3b723c53c226f8181fc5bd47223e, time is 2023-06-22 15:20:02 UTC<!--GAMFC-END-->.
-// @ts-ignore
-import { connect } from 'cloudflare:sockets';
+// <!--GAMFC--> 基于提交 43fad05dcdae3b723c53c226f8181fc5bd47223e 的版本，时间为 2023-06-22 15:20:02 UTC<!--GAMFC-END-->。
+// @ts-忽略
+从'cloudflare:sockets'导入{      connect      }；
 
-// How to generate your own UUID:
-// [Windows] Press "Win + R", input cmd and run:  Powershell -NoExit -Command "[guid]::NewGuid()"
-let userID = 'd342d11e-d424-4583-b36e-524ab1f0afa4';
+// 如何生成自己的UUID:
+// [Windows] 按“Win + R”，输入cmd并运行：Powershell -NoExit -Command "[guid]::NewGuid()"
+让用户 ID = '1c8cb1c7-afc2-4cb4-ad1f-a3937e731f58' ;
 
-const proxyIPs = ['cdn-all.xn--b6gac.eu.org', 'cdn.xn--b6gac.eu.org', 'cdn-b100.xn--b6gac.eu.org', 'edgetunnel.anycast.eu.org', 'cdn.anycast.eu.org'];
-let proxyIP = proxyIPs[Math.floor(Math.random() * proxyIPs.length)];
+const     代理IP = [     'cdn-all.xn--b6gac.eu.org' , 'cdn.xn--b6gac.eu.org' , 'cdn-b100.xn--b6gac.eu.org' , 'edgetunnel. Anycast.eu.org'、'cdn.anycast.eu.org'   ] ;
+令proxyIP = proxyIPs [数学。Floor   ( Math.random ( ) *      proxyIPs.length ) ] ; _  _        
 
-let dohURL = 'https://sky.rethinkdns.com/1:-Pf_____9_8A_AMAIgE8kMABVDDmKOHTAKg='; // https://cloudflare-dns.com/dns-query or https://dns.google/dns-query
+让 dohURL = 'https://sky.rethinkdns.com/1:-Pf_____9_8A_AMAIgE8kMABVDDmKOHTAKg=' ; // https://cloudflare-dns.com/dns-query 或 https://dns.google/dns-query
 
-// v2board api environment variables
-let nodeId = ''; // 1
+// v2board api环境变量
+令节点ID = '' ; // 1
 
-let apiToken = ''; //abcdefghijklmnopqrstuvwxyz123456
+让 apiToken = '' ; //abcdefghijklmnopqrstuvwxyz123456
 
-let apiHost = ''; // api.v2board.com
+让 apiHost = '' ; // api.v2board.com
 
-if (!isValidUUID(userID)) {
-    throw new Error('uuid is not valid');
+if      ( ! isValidUUID     (用户ID )     )      {
+    抛出新错误（'uuid 无效'）；
 }
 
-export default {
+结算违约金值{
     /**
-     * @param {import("@cloudflare/workers-types").Request} request
-     * @param {{UUID: string, PROXYIP: string, DNS_RESOLVER_URL: string, NODE_ID: int, API_HOST: string, API_TOKEN: string}} env
+     * @param {import("@cloudflare/workers-types").Request} 请求
+     * @param {{UUID：字符串，PROXYIP：字符串，DNS_RESOLVER_URL：字符串，NODE_ID：int，API_HOST：字符串，API_TOKEN：字符串}} env
      * @param {import("@cloudflare/workers-types").ExecutionContext} ctx
-     * @returns {Promise<Response>}
+     * @returns {Promise<响应>}
      */
-    async fetch(request, env, ctx) {
-        try {
-            userID = env.UUID || userID;
-            proxyIP = env.PROXYIP || proxyIP;
-            dohURL = env.DNS_RESOLVER_URL || dohURL;
+     拿来
+        尝试{
+            用户 ID = 环境。UUID || 身份用户；
+            代理IP = 环境.代理IP || 代理服务器的IP；
+            DNS_RESOLVER_URL || dohURL = 环境变量。网址；
             nodeId = env.NODE_ID || nodeId;
             apiToken = env.API_TOKEN || apiToken;
             apiHost = env.API_HOST || apiHost;
